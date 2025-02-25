@@ -1,0 +1,68 @@
+﻿Question number,Code variable,Question
+Q0a_1,first_name,First name
+Q0a_2,last_name,Last name
+Q0c,email,Email ID
+Q14_1,parent_role_model,"Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Parent"
+Q14_2,sibling_role_model,"Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Brother or sister"
+Q14_3,family_role_model,"Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Other family member (grandparent, aunt/uncle)"
+Q14_4,teacher_role_model,"Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Teacher"
+Q14_5,coach_role_model,"Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Coach"
+Q14_6,clergy_role_model,"Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Clergy (Minister/Priest, Imam, Rabbi)"
+Q14_7,supervisor_role_model,"Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Job Supervisor"
+Q15,job_format,What category best describes what you did this summer?
+Q15_1,contribute_family,"Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - Family"
+Q15_2,contribute_friends,"Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups?  Friends"
+Q15_3,contribute_coworkers,"Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - Co-workers"
+Q15_4,contribute_neighborhood,"Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - People in your neighborhood"
+Q15_5,contribute_school,"Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - People in your school"
+Q15_6,contribute_worship,"Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - People in your place of worship"
+Q26_1,prepared_resume,"Job Search Skills: Indicate whether you have completed any of the following - I have prepared, edited, and proofread my resume."
+Q26_2,prepared_cover_letter,"Job Search Skills: Indicate whether you have completed any of the following - I have prepared, edited, and proofread my cover letter."
+Q26_3,asked_adult_reference,"Job Search Skills: Indicate whether you have completed any of the following - I have asked an adult (e.g. family member, teacher, or neighbor) to serve as a reference for me when I apply for jobs."
+Q26_4,searched_jobs_online,"Job Search Skills: Indicate whether you have completed any of the following - I have searched for jobs online using a job board (e.g. Monster, Indeed, Career Builder, Snagajob, Zip Recruiter)"
+Q26_5,discussed_wanted_jobs,"Job Search Skills: Indicate whether you have completed any of the following  - I have talked with my family, neighbors, teachers, and friends, about the types of jobs I want -- and have asked for their help finding job opportunities."
+Q26_6,developed_interview_answers,Job Search Skills: Indicate whether you have completed any of the following  - I have developed some answer to the usual questions asked during an interview (e.g. what are your strength and weaknesses?)
+Q26_7,practiced_interviewing,"Job Search Skills: Indicate whether you have completed any of the following - I have practiced my interviewing skills with an adult (e.g. family member, teacher, or neighbor)."
+Q28_1,usually_on_time_school_work,Work Habits: Indicate how much you agree with each of the following phrases - I am usually on time for school or work.
+Q28_2,rarely_absent_school,Work Habits: Indicate how much you agree with each of the following phrases - I am rarely absent from school or call in sick.
+Q28_3,meet_deadlines,Work Habits: Indicate how much you agree with each of the following phrases - I usually meet my deadlines and hand in assignments on time.
+Q28_4,keep_track_assignments,Work Habits: Indicate how much you agree with each of the following phrases - I often keep track of my assignments and rarely forget to hand things in.
+Q28_5,work_independently,Work Habits: Indicate how much you agree with each of the following phrases - I usually work independently without a lot of supervision.
+Q28_6,ask_for_help,Work Habits: Indicate how much you agree with each of the following phrases - I often ask for help if directions are not clear.
+Q28_7,work_in_teams,Work Habits: Indicate how much you agree with each of the following phrases - I often work in teams with other people.
+Q29_1,rarely_get_upset_or_lose_temper,Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get upset or lose my temper with other people.
+Q29_2,rarely_get_upset_when_corrected,Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get upset when supervisors or teachers correct my mistakes.
+Q29_3,rarely_get_into_arguments_friends,Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get into arguments with my friends.
+Q29_4,rarely_get_into_arguments_parents_teachers,Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get into arguments with my parents or teachers.
+Q29_5,rarely_difficulty_resolving_arguments,Communication Skills: Indicate how much you agree with each of the following phrases - I rarely have difficulty resolving arguments with people.
+Q29_6,often_eye_contact_during_conversation,Communication Skills: Indicate how much you agree with each of the following phrases - I often make eye contact when having a conversation.
+Q32,post_high_school_plans,What do you plan to do after high school?
+Q34,interested_in_pursuing,Which of the following industries are you most interested in pursuing as a career?
+Q56,same_employer,Did you work at the same location/employer last summer?
+Q57,hours_worked_per_week,"On average, how many hours did you work each week this summer?"
+Q59_1,feeling_nervous,"Over the last two weeks, how often have you been bothered by the following problems? - Feeling nervous, anxious, or on edge"
+Q59_2,cannot_stop_worrying,"Over the last two weeks, how often have you been bothered by the following problems? - Not being able to stop or control worrying"
+Q59_3,feeling_down,"Over the last two weeks, how often have you been bothered by the following problems? - Feeling down, depressed or hopeless"
+Q59_4,little_interest_in_things,"Over the last two weeks, how often have you been bothered by the following problems? - Little interest or pleasure in doing things"
+Q72,supervisor_support,"If you had a job supervisor, how supportive were they overall?"
+Q74,job_match_interests,"Overall, how well did the job match with your skills and interests?"
+Q75,consider_career_likelihood,How likely are you to consider a career in the type of work you did this summer?
+Q76_1,job_reference_person,Now that the summer is over - Do you have someone you can use as a job reference?
+Q76_2,mentor_person,Now that the summer is over - Do you have an adult you worked with that you consider a mentor?
+Q76_3,recommend_job,Now that the summer is over - Would you recommend this job to a friend?
+Q76_4,new_job_prepared,Now that the summer is over - Do you feel better prepared to enter a new job?
+Q77,experience_rating,"Overall, how would you rate your job experience this summer?"
+Q80,skills_to_improve,What skills do you feel that you need to develop and improve to meet your future career goals
+Q81,typically_manage_money,Which of the following best describe how you typically manage your money
+Q82,household_items_paid_for,Do you have any items that you regularly help pay for in your household? 
+Q83,gender,How do you identify your gender (Choose only one)?
+Q84,race,What is your race/ethnicity?
+Q85,second_language_spoken_at_home,Is there another language other than English that is regularly spoken in your home?
+Q86,adult_live_with,What best describes the adult guardian that you primarily live with
+Q89_1,supervisor_properly_train,Did your supervisor - Properly train for your summer job?
+Q89_2,supervisor_understand_role,Did your supervisor - Help you understand your role at your summer job?
+Q89_3,supervisor_understand_expectations,Did your supervisor - Help you understand what was expected of you for your summer job?
+Q89_4,supervisor_give_feedback,Did your supervisor - Give you feedback on how you were doing at your summer job?
+Q89_5,supervisor_achieve_goals,Did your supervisor - Help you think about how to achieve your educational or career goals?
+Q89_6,supervisor_comfortable,Did your supervisor - Make you feel comfortable talking about challenges outside of work?
+Q105,daily_work_type,What type of daily work did you do this summer?
