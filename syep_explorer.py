@@ -138,6 +138,9 @@ def generate_plot(plot_type, x_axis_selection, y_axis_selection, gender_selectio
     '''
     Generate and return plot in 'Plot' tab of dashboard based on selections
     '''
+    # Close all previously open figures to prevent memory leaks
+    plt.close('all')
+
     # Clear current plot
     plt.clf()
 
