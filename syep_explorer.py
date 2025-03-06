@@ -28,57 +28,60 @@ api.prepare_data()
 
 # Implement widget allowing user to select desired plot type
 plot_type = pn.widgets.RadioBoxGroup(name = 'Plot type: ', options = ['Countplot', 'Stacked Bar Plot', 'Heatmap'],
-                                     value = 'Countplot', inline = False, margin = (10, 0, 0, 10))
+                                     value = 'Countplot', inline = False, margin = (10, 0, 0, 30))
 
 # Separate x and y selectors for each plot type, set default values to reasonable qualitative columns from dataset
 x_axis_selection = pn.widgets.Select(name = 'X-axis: ', options = api.get_columns(), value = api.get_columns()[0],
-                                     margin = (10, 0, 5, 10))
+                                     margin = (10, 0, 5, 20))
 y_axis_selection = pn.widgets.Select(name = 'Y-axis: ', options = api.get_columns(), value = api.get_columns()[6],
-                                     margin = (5, 0, 10, 10))
+                                     margin = (5, 0, 10, 20))
 
 # Implement widgets to restrict plotting data based on respective column values, setting reasonable default values
 gender_selection = pn.widgets.CheckBoxGroup(name = 'Gender(s): ', options = api.get_unique_genders(), value = [],
-                                         margin = (5, 0, 10, 10))
+                                         margin = (5, 0, 10, 30))
 race_selection = pn.widgets.MultiSelect(name = 'Race(s): ', options = api.get_unique_races(), value = [],
-                                        margin = (5, 0, 10, 10))
+                                        margin = (5, 0, 10, 20))
 second_language_selection = pn.widgets.MultiSelect(name = 'Second language(s): ', options = api.get_unique_second_languages(),
-                                                     value = [], margin = (5, 0, 10, 10))
+                                                     value = [], margin = (5, 0, 10, 20))
 adult_live_with_selection = pn.widgets.MultiSelect(name = 'Adult(s) living with: ', options = api.get_unique_adult_live_with(),
-                                                     value = [], margin = (5, 0, 10, 10))
+                                                     value = [], margin = (5, 0, 10, 20))
 job_format_selection = pn.widgets.CheckBoxGroup(name = 'Job format(s): ', options = api.get_unique_job_formats(), value = [],
-                                         inline = False, margin = (5, 0, 10, 10))
+                                         inline = False, margin = (5, 0, 10, 30))
 program_selection = pn.widgets.CheckBoxGroup(name = 'Program(s): ', options = api.get_unique_programs(), value = [],
-                                         inline = False, margin = (5, 0, 10, 10))
+                                         inline = False, margin = (5, 0, 10, 30))
 hours_worked_per_week_selection = pn.widgets.CheckBoxGroup(name = 'Hours worked per week: ', options = api.get_unique_hours_worked(),
-                                                         value = [], inline = False, margin = (5, 0, 10, 10))
+                                                         value = [], inline = False, margin = (5, 0, 10, 30))
 daily_work_type_selection = pn.widgets.MultiSelect(name = 'Daily work type(s): ', options = api.get_unique_daily_work(),
-                                                         value = [], margin = (5, 0, 10, 10))
+                                                         value = [], margin = (5, 0, 10, 20))
+
 
 # Plotting widgets:
 
 # Implement width and height widgets with values based on display size
-width = pn.widgets.IntSlider(name = 'Width: ', start = 500, end = 1000, value = 750, step = 50, margin = (10, 0, 0, 10))
-height = pn.widgets.IntSlider(name = 'Height: ', start = 200, end = 1200, value = 400, step = 50)
+width = pn.widgets.IntSlider(name = 'Width', start = 500, end = 1000, value = 750, step = 50, margin = (10, 0, 0, 30))
+height = pn.widgets.IntSlider(name = 'Height', start = 200, end = 1200, value = 400, step = 50, margin = (10, 0, 0, 30))
 
 # Implement widgets for visual plot customization and plot legibility (x-tick tilt/size/display/skip)
 # Note: default countplot_color_picker value is matplotlib default blue hex code, #1f77b4
-countplot_color_picker = pn.widgets.ColorPicker(name = 'Countplot color: ', value = '#1f77b4')
+countplot_color_picker = pn.widgets.ColorPicker(name = 'Countplot color: ', value = '#1f77b4', margin = (10, 0, 0, 30))
 stacked_palette_selector = pn.widgets.Select(name = 'Stacked bar plot palette: ',
-                                             options = ['Set1', 'Set2', 'Set3', 'Pastel1', 'Pastel2', 'Paired'])
+                                             options = ['Set1', 'Set2', 'Set3', 'Pastel1', 'Pastel2', 'Paired'],
+                                             margin = (10, 0, 0, 30))
 heatmap_cmap_selector = pn.widgets.Select(name = 'Heatmap colormap: ',
-                                          options = ['Blues', 'Reds', 'Greens', 'coolwarm', 'viridis', 'plasma'])
-border_checkbox = pn.widgets.Checkbox(name = 'Add border?', value = False, margin = (5, 0, 5, 10))
-tilt_x_ticks = pn.widgets.Checkbox(name = 'Tilt x-axis ticks?', value = True, margin = (10, 0, 5, 10))
+                                          options = ['Blues', 'Reds', 'Greens', 'coolwarm', 'viridis', 'plasma'],
+                                          margin = (10, 0, 0, 30))
+border_checkbox = pn.widgets.Checkbox(name = 'Add border?', value = False, margin = (5, 0, 5, 30))
+tilt_x_ticks = pn.widgets.Checkbox(name = 'Tilt x-axis ticks?', value = True, margin = (10, 0, 5, 30))
 x_tick_font_size = pn.widgets.IntSlider(name = 'X-axis tick font size: ', start = 4, end = 20, value = 8, step = 1,
-                                        margin = (20, 0, 10, 10))
-show_all_x_ticks = pn.widgets.Checkbox(name = 'Show all x-axis ticks?', value = False, margin = (10, 0, 5, 10))
+                                        margin = (20, 0, 10, 30))
+show_all_x_ticks = pn.widgets.Checkbox(name = 'Show all x-axis ticks?', value = False, margin = (10, 0, 5, 30))
 tick_skip_slider = pn.widgets.IntInput(name = 'Skip every n x-axis ticks: ', start = 2, end = 20, value = 4,
-                                       margin = (10, 0, 10, 10))
+                                       margin = (10, 0, 10, 30))
 
 # Table widgets:
 
 # Implement widgets for customizing data displayed in table (series and overview)
-include_all_data_checkbox = pn.widgets.Checkbox(name = 'Include all data?', value = False, margin = (10, 0, 0, 10))
+include_all_data_checkbox = pn.widgets.Checkbox(name = 'Include all data?', value = False, margin = (10, 0, 10, 30))
 
 # CALLBACK FUNCTIONS
 
@@ -209,18 +212,18 @@ plot = pn.bind(generate_plot, plot_type, x_axis_selection, y_axis_selection, gen
 
 # DASHBOARD WIDGET CONTAINERS ("CARDS")
 
-card_width = 330
+card_width = 400
 
 # Add headers above widgets to guide user selections
-plot_type_header = pn.pane.Markdown("#### Plot type: ", margin = (-5, 0, -15, 0))
-gender_header = pn.pane.Markdown("Gender: ", margin = (-20, 0, -20, 0))
-job_format_header = pn.pane.Markdown("Job format: ", margin = (-20, 0, -20, 0))
-program_header = pn.pane.Markdown("Program: ", margin = (-20, 0, -20, 0))
-hours_worked_per_week_header = pn.pane.Markdown("Hours worked per week: ", margin = (-20, 0, -20, 0))
-search_type_header_demographics = pn.pane.Markdown("#### Demographics: ", margin = (-10, 0, -10, 0))
-search_type_header_program = pn.pane.Markdown("#### Program attributes: ", margin = (-10, 0, -10, 0))
-add_border_header = pn.pane.Markdown("#### For countplots and stacked bar plots ONLY: ", margin = (0, 0, -10, 0))
-show_all_x_ticks_header = pn.pane.Markdown("#### If NOT showing all x-axis ticks: ", margin = (-10, 0, -15, 0))
+plot_type_header = pn.pane.Markdown("#### Plot type: ", margin = (-5, 0, -15, 10))
+gender_header = pn.pane.Markdown("Gender: ", margin = (-20, 0, -20, 10))
+job_format_header = pn.pane.Markdown("Job format: ", margin = (-20, 0, -20, 10))
+program_header = pn.pane.Markdown("Program: ", margin = (-20, 0, -20, 10))
+hours_worked_per_week_header = pn.pane.Markdown("Hours worked per week: ", margin = (-20, 0, -20, 10))
+search_type_header_demographics = pn.pane.Markdown("#### Demographics: ", margin = (-10, 0, -10, 10))
+search_type_header_program = pn.pane.Markdown("#### Program attributes: ", margin = (-10, 0, -10, 10))
+add_border_header = pn.pane.Markdown("#### For countplots and stacked bar plots ONLY: ", margin = (0, 0, -10, 10))
+show_all_x_ticks_header = pn.pane.Markdown("#### If NOT showing all x-axis ticks: ", margin = (-10, 0, -15, 10))
 
 # Create markdown for survey question guide
 survey_guide_df = pd.read_csv("survey_question_guide.csv")
@@ -247,7 +250,7 @@ search_card = pn.Card(
         program_selection,
         hours_worked_per_week_header,
         hours_worked_per_week_selection,
-        daily_work_type_selection
+        daily_work_type_selection,
     ),
     title = 'Search', width = card_width, collapsed = False
 )
@@ -266,7 +269,7 @@ plot_card = pn.Card(
         tilt_x_ticks,
         show_all_x_ticks,
         show_all_x_ticks_header,
-        tick_skip_slider
+        tick_skip_slider,
     ),
     title = 'Plot', width = card_width, collapsed = True
 )
@@ -274,7 +277,7 @@ plot_card = pn.Card(
 # Create 'Table' card
 table_card = pn.Card(
     pn.Column(
-        include_all_data_checkbox
+        include_all_data_checkbox,
     ),
     title = 'Table', width = card_width, collapsed = True
 )
@@ -282,9 +285,31 @@ table_card = pn.Card(
 
 # LAYOUT
 
+css = """
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+/* Set Montserrat font globally and in the host */
+:host {
+    --base-font: 'Montserrat', sans-serif !important;
+}
+
+/* Default font family for the entire layout */
+body {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Apply bold font to the header */
+#header .app-header .title {
+    font-weight: bold;
+}
+"""
+
+# Initialize Panel with the custom CSS
+pn.extension(raw_css=[css])
+
 # Set up layout
 layout = pn.template.FastListTemplate(
-    title = 'SYEP Database Explorer',
+    title = 'CITY of BOSTON SYEP Database Explorer',
     sidebar = [
         search_card,
         plot_card,
@@ -299,7 +324,9 @@ layout = pn.template.FastListTemplate(
             active = 0  # Which tab is active by default?
         )
     ],
-    header_background = '#000000'
+    header_background = '#091F2F',
+    logo = 'https://www.boston.gov/sites/default/files/styles/med_small_square__200x200_/public/img/columns/2016/11/cob_b_white-01.png?itok=-SZRDrhw',
+    sidebar_width=405,
 ).servable()
 
 layout.show()

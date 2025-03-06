@@ -162,7 +162,7 @@ class SYEP_API:
         return filtered_data
 
 
-    def create_plot(self, plot_type, width, height, x_axis=None, y_axis=None, data=None, countplot_color='#1f77b4',
+    def create_plot(self, plot_type, width=600, height=400, x_axis=None, y_axis=None, data=None, countplot_color='#1f77b4',
                     stacked_bar_plot_palette='Set1', heatmap_cmap='Blues', edgecolor='None'):
         '''
         Create and return a plot (countplot, stacked bar plot, or heatmap) based on plot_type and
