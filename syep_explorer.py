@@ -222,7 +222,8 @@ dashboard = pn.Column(
 
 
 # LANDING PAGE COMPONENT
-landing_page = pn.Column(
+# Define the landing page content (this will be shown in a dialog)
+landing_page_content = pn.Column(
     pn.pane.Markdown("""
     <h1 style="font-size: 40px;">Welcome to the SYEP Database Explorer!</h1>
 
@@ -241,16 +242,18 @@ landing_page = pn.Column(
         align='center',
         margin=(10, 10, 10, 10)
     )
-).servable()
+)
 
-# Callback to transition from Landing Page to main dashboard
+# Make dashboard initially invisible
+dashboard.visible = False
+
+# Callback to transition from Dialog to main dashboard
 def show_dashboard(event):
-    # Once "Start Exploring" is clicked, hide the landing page and show the main dashboard
-    landing_page.visible = False
-    dashboard.visible = True
+    landing_page_content.visible = False  # Close the dialog
+    dashboard.visible = True  # Show the dashboard
 
 # Attach the callback to the button
-landing_page[1].on_click(show_dashboard)
+landing_page_content[1].on_click(show_dashboard)
 
 
 # DASHBOARD WIDGET CONTAINERS ("CARDS")
@@ -360,17 +363,9 @@ layout = pn.template.FastListTemplate(
     ],
     theme_toggle = False,
     main = [
-        pn.Column(
-            landing_page,  # Initially show the landing page
-            dashboard  # Initially hide the dashboard by setting its visibility to False
-        )
+        pn.Column(landing_page_content, dashboard)
     ],
     header_background = '#091F2F',
     logo = 'https://www.boston.gov/sites/default/files/styles/med_small_square__200x200_/public/img/columns/2016/11/cob_b_white-01.png?itok=-SZRDrhw',
     sidebar_width=405,
-)
-
-# Initially hide the dashboard
-dashboard.visible = False
-
-layout.servable()
+).servable()
