@@ -16,6 +16,7 @@ pn.extension()
 pn.extension('tabulator')
 pn.config.theme = 'default'
 
+
 # INITIALIZE API
 api = SYEP_API()
 api.load_syep('Datasets/csv/SYEP.csv')
@@ -58,7 +59,7 @@ daily_work_type_selection = pn.widgets.MultiSelect(name = 'Daily work type(s): '
 # Plotting widgets:
 
 # Implement width and height widgets with values based on display size
-width = pn.widgets.IntSlider(name = 'Width', start = 500, end = 1000, value = 750, step = 50, margin = (10, 0, 0, 30))
+width = pn.widgets.IntSlider(name = 'Width', start = 500, end = 1000, value = 650, step = 50, margin = (10, 0, 0, 30))
 height = pn.widgets.IntSlider(name = 'Height', start = 200, end = 1200, value = 400, step = 50, margin = (10, 0, 0, 30))
 
 # Implement widgets for visual plot customization and plot legibility (x-tick tilt/size/display/skip)
@@ -74,8 +75,8 @@ border_checkbox = pn.widgets.Checkbox(name = 'Add border?', value = False, margi
 tilt_x_ticks = pn.widgets.Checkbox(name = 'Tilt x-axis ticks?', value = True, margin = (10, 0, 5, 30))
 x_tick_font_size = pn.widgets.IntSlider(name = 'X-axis tick font size: ', start = 4, end = 20, value = 8, step = 1,
                                         margin = (20, 0, 10, 30))
-show_all_x_ticks = pn.widgets.Checkbox(name = 'Show all x-axis ticks?', value = False, margin = (10, 0, 5, 30))
-tick_skip_slider = pn.widgets.IntInput(name = 'Skip every n x-axis ticks: ', start = 2, end = 20, value = 4,
+show_all_x_ticks = pn.widgets.Checkbox(name = 'Show all x-axis ticks?', value = True, margin = (10, 0, 5, 30))
+tick_skip_slider = pn.widgets.IntInput(name = 'Skip every n x-axis ticks: ', start = 2, end = 20, value = 2,
                                        margin = (10, 0, 10, 30))
 
 # Table widgets:
@@ -119,7 +120,7 @@ def generate_table(x_axis_selection, y_axis_selection, gender_selection, race_se
 
     # Include all data if checkbox is checked
     if include_all_data_checkbox:
-        additional_columns = ['program',  'same_employer', 'job_format', 'hours_worked_per_week', 'daily_work_type', 'job_match_interests', 'consider_career_likelihood', 'supervisor_support', 'supervisor_properly_train', 'supervisor_understand_role', 'supervisor_understand_expectations', 'supervisor_give_feedback', 'supervisor_achieve_goals', 'supervisor_comfortable', 'experience_rating', 'job_reference_person', 'mentor_person', 'recommend_job', 'new_job_prepared', 'interested_in_pursuing', 'post_high_school_plans', 'prepared_resume', 'prepared_cover_letter', 'asked_adult_reference', 'searched_jobs_online', 'discussed_wanted_jobs', 'developed_interview_answers', 'practiced_interviewing', 'usually_on_time_school_work', 'rarely_absent_school', 'meet_deadlines', 'keep_track_assignments', 'work_independently', 'ask_for_help', 'work_in_teams', 'rarely_get_upset_or_lose_temper', 'rarely_get_upset_when_corrected', 'rarely_get_into_arguments_friends', 'rarely_get_into_arguments_parents_teachers', 'rarely_difficulty_resolving_arguments', 'often_eye_contact_during_conversation', 'skills_to_improve', 'typically_manage_money', 'household_items_paid_for', 'parent_role_model', 'sibling_role_model', 'family_role_model', 'teacher_role_model', 'coach_role_model', 'clergy_role_model', 'supervisor_role_model', 'contribute_family', 'contribute_friends', 'contribute_coworkers', 'contribute_neighborhood', 'contribute_school', 'contribute_worship', 'feeling_nervous', 'cannot_stop_worrying', 'feeling_down', 'little_interest_in_things', 'gender', 'race', 'second_language_spoken_at_home', 'adult_live_with']
+        additional_columns = ['Program', 'Summer Job Experience: Did you work at the same location/employer last summer?', 'Summer Job Experience: What category best describes what you did this summer?', 'Summer Job Experience: On average, how many hours did you work each week this summer?', 'Summer Job Experience: What type of daily work did you do this summer?', 'Summer Job Experience: Overall, how well did the job match with your skills and interests?', 'Summer Job Experience: How likely are you to consider a career in the type of work you did this summer?', 'Summer Job Experience: If you had a job supervisor, how supportive were they overall?', 'Summer Job Experience: Did your supervisor - Properly train for your summer job?', 'Summer Job Experience: Did your supervisor - Help you understand your role at your summer job?', 'Summer Job Experience: Did your supervisor - Help you understand what was expected of you for your summer job?', 'Summer Job Experience: Did your supervisor - Give you feedback on how you were doing at your summer job?', 'Summer Job Experience: Did your supervisor - Help you think about how to achieve your educational or career goals?', 'Summer Job Experience: Did your supervisor - Make you feel comfortable talking about challenges outside of work?', 'Summer Job Experience: Overall, how would you rate your job experience this summer?', 'Summer Job Experience: Now that the summer is over - Do you have someone you can use as a job reference?', 'Summer Job Experience: Now that the summer is over - Do you have an adult you worked with that you consider a mentor?', 'Summer Job Experience: Now that the summer is over - Would you recommend this job to a friend?', 'Summer Job Experience: Now that the summer is over - Do you feel better prepared to enter a new job?', 'Summer Job Experience: Which of the following industries are you most interested in pursuing as a career?', 'Summer Job Experience: What do you plan to do after high school?', 'Job Search Skills: Indicate whether you have completed any of the following - I have prepared, edited, and proofread my resume.', 'Job Search Skills: Indicate whether you have completed any of the following - I have prepared, edited, and proofread my cover letter.', 'Job Search Skills: Indicate whether you have completed any of the following - I have asked an adult (e.g. family member, teacher, or neighbor) to serve as a reference for me when I apply for jobs.', 'Job Search Skills: Indicate whether you have completed any of the following - I have searched for jobs online using a job board (e.g. Monster, Indeed, Career Builder, Snagajob, Zip Recruiter)', 'Job Search Skills: Indicate whether you have completed any of the following  - I have talked with my family, neighbors, teachers, and friends, about the types of jobs I want -- and have asked for their help finding job opportunities.', 'Job Search Skills: Indicate whether you have completed any of the following  - I have developed some answer to the usual questions asked during an interview (e.g. what are your strength and weaknesses?)', 'Job Search Skills: Indicate whether you have completed any of the following - I have practiced my interviewing skills with an adult (e.g. family member, teacher, or neighbor).', 'Work Habits: Indicate how much you agree with each of the following phrases - I am usually on time for school or work.', 'Work Habits: Indicate how much you agree with each of the following phrases - I am rarely absent from school or call in sick.', 'Work Habits: Indicate how much you agree with each of the following phrases - I usually meet my deadlines and hand in assignments on time.', 'Work Habits: Indicate how much you agree with each of the following phrases - I often keep track of my assignments and rarely forget to hand things in.', 'Work Habits: Indicate how much you agree with each of the following phrases - I usually work independently without a lot of supervision.', 'Work Habits: Indicate how much you agree with each of the following phrases - I often ask for help if directions are not clear.', 'Work Habits: Indicate how much you agree with each of the following phrases - I often work in teams with other people.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get upset or lose my temper with other people.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get upset when supervisors or teachers correct my mistakes.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get into arguments with my friends.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get into arguments with my parents or teachers.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely have difficulty resolving arguments with people.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I often make eye contact when having a conversation.', 'Job Search Skills: What skills do you feel that you need to develop and improve to meet your future career goals?', 'Job Search Skills: Which of the following best describe how you typically manage your money?', 'Job Search Skills: Do you have any items that you regularly help pay for in your household?', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Parent', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Brother or sister', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Other family member (grandparent, aunt/uncle)', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Teacher', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Coach', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Clergy (Minister/Priest, Imam, Rabbi)', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Job Supervisor', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - Family', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups?  Friends', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - Co-workers', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - People in your neighborhood', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - People in your school', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - People in your place of worship', 'Well-being: Over the last two weeks, how often have you been bothered by the following problems? - Feeling nervous, anxious, or on edge', 'Well-being: Over the last two weeks, how often have you been bothered by the following problems? - Not being able to stop or control worrying', 'Well-being: Over the last two weeks, how often have you been bothered by the following problems? - Feeling down, depressed or hopeless', 'Well-being: Over the last two weeks, how often have you been bothered by the following problems? - Little interest or pleasure in doing things', 'Demographics: Gender', 'Demographics: Race', 'Demographics: Is there another language other than English that is regularly spoken in your home?', 'Demographics: What best describes the adult guardian that you primarily live with?']
         for column in additional_columns:
             if column == x_axis_selection:
                 additional_columns.remove(column)
@@ -208,6 +209,48 @@ plot = pn.bind(generate_plot, plot_type, x_axis_selection, y_axis_selection, gen
                 hours_worked_per_week_selection, daily_work_type_selection, width, height, countplot_color_picker,
                 stacked_palette_selector, heatmap_cmap_selector, border_checkbox, tilt_x_ticks, x_tick_font_size,
                show_all_x_ticks, tick_skip_slider)
+
+
+# Define the dashboard content (main dashboard components)
+dashboard = pn.Column(
+    pn.Tabs(
+        ('Plot', plot),  # Replace with actual plot content
+        ('Table', datatable),  # Replace with actual table content
+        active=0  # Which tab is active by default?
+    ),
+)
+
+
+# LANDING PAGE COMPONENT
+landing_page = pn.Column(
+    pn.pane.Markdown("""
+    <h1 style="font-size: 40px;">Welcome to the SYEP Database Explorer!</h1>
+
+    <p style="font-size: 20px;">This dashboard allows you to interactively explore the <strong>Summer Youth Employment Program (SYEP)</strong> dataset. 
+    The data includes insights about youth participants in various summer job programs, including details about their experiences, demographics, and employment conditions.</p>
+
+    <strong>Click the button below to start exploring the data.</strong>
+    """, sizing_mode='stretch_width'),
+
+    pn.widgets.Button(
+        name="Start Exploring",
+        button_type='primary',
+        width=200,
+        height=50,  # Set a fixed height
+        sizing_mode='fixed',
+        align='center',
+        margin=(10, 10, 10, 10)
+    )
+).servable()
+
+# Callback to transition from Landing Page to main dashboard
+def show_dashboard(event):
+    # Once "Start Exploring" is clicked, hide the landing page and show the main dashboard
+    landing_page.visible = False
+    dashboard.visible = True
+
+# Attach the callback to the button
+landing_page[1].on_click(show_dashboard)
 
 
 # DASHBOARD WIDGET CONTAINERS ("CARDS")
@@ -317,16 +360,17 @@ layout = pn.template.FastListTemplate(
     ],
     theme_toggle = False,
     main = [
-        pn.Tabs(
-            ('Plot', plot),  # Replace None with callback binding
-            ('Table', datatable),  # Replace None with callback binding
-            ('Guide', survey_guide),
-            active = 0  # Which tab is active by default?
+        pn.Column(
+            landing_page,  # Initially show the landing page
+            dashboard  # Initially hide the dashboard by setting its visibility to False
         )
     ],
     header_background = '#091F2F',
     logo = 'https://www.boston.gov/sites/default/files/styles/med_small_square__200x200_/public/img/columns/2016/11/cob_b_white-01.png?itok=-SZRDrhw',
     sidebar_width=405,
-).servable()
+)
+
+# Initially hide the dashboard
+dashboard.visible = False
 
 layout.show()

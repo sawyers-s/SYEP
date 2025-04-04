@@ -39,7 +39,7 @@ class SYEP_API:
         '''
         Get and return list of unique genders from dataset
         '''
-        unique_genders = self.syep['gender'].dropna().astype(str).unique()
+        unique_genders = self.syep['Demographics: Gender'].dropna().astype(str).unique()
         return sorted(unique_genders)
 
 
@@ -47,7 +47,7 @@ class SYEP_API:
         '''
         Get and return list of unique races from dataset
         '''
-        unique_races = self.syep['race'].dropna().astype(str).unique()
+        unique_races = self.syep['Demographics: Race'].dropna().astype(str).unique()
         return sorted(unique_races)
 
 
@@ -55,7 +55,7 @@ class SYEP_API:
         '''
         Get and return list of unique second languages from dataset
         '''
-        unique_second_languages = self.syep['second_language_spoken_at_home'].dropna().astype(str).unique()
+        unique_second_languages = self.syep['Demographics: Is there another language other than English that is regularly spoken in your home?'].dropna().astype(str).unique()
         return sorted(unique_second_languages)
 
 
@@ -63,7 +63,7 @@ class SYEP_API:
         '''
         Get and return list of unique adults live with from dataset
         '''
-        unique_adults_live_with = self.syep['adult_live_with'].dropna().astype(str).unique()
+        unique_adults_live_with = self.syep['Demographics: What best describes the adult guardian that you primarily live with?'].dropna().astype(str).unique()
         return sorted(unique_adults_live_with)
 
 
@@ -71,7 +71,7 @@ class SYEP_API:
         '''
         Get and return list of unique job formats from dataset
         '''
-        unique_job_formats = self.syep['job_format'].dropna().astype(str).unique()
+        unique_job_formats = self.syep['Summer Job Experience: What category best describes what you did this summer?'].dropna().astype(str).unique()
         return sorted(unique_job_formats)
 
 
@@ -79,7 +79,7 @@ class SYEP_API:
         '''
         Get and return list of unique programs from dataset
         '''
-        unique_programs = self.syep['program'].dropna().astype(str).unique()
+        unique_programs = self.syep['Program'].dropna().astype(str).unique()
         return sorted(unique_programs)
 
 
@@ -87,7 +87,7 @@ class SYEP_API:
         '''
         Get and return list of unique hours worked per week values from dataset
         '''
-        unique_hours_worked = self.syep['hours_worked_per_week'].dropna().astype(str).unique()
+        unique_hours_worked = self.syep['Summer Job Experience: On average, how many hours did you work each week this summer?'].dropna().astype(str).unique()
         return sorted(unique_hours_worked)
 
 
@@ -95,7 +95,7 @@ class SYEP_API:
         '''
         Get and return list of unique daily work type values from dataset
         '''
-        unique_daily_work = self.syep['daily_work_type'].dropna().astype(str).unique()
+        unique_daily_work = self.syep['Summer Job Experience: What type of daily work did you do this summer?'].dropna().astype(str).unique()
         return sorted(unique_daily_work)
 
 
@@ -128,41 +128,41 @@ class SYEP_API:
 
         # Filter by gender if provided
         if gender:
-            filtered_data = filtered_data[filtered_data['gender'].isin(gender)]
+            filtered_data = filtered_data[filtered_data['Demographics: Gender'].isin(gender)]
 
         # Filter by race if provided
         if race:
-            filtered_data = filtered_data[filtered_data['race'].isin(race)]
+            filtered_data = filtered_data[filtered_data['Demographics: Race'].isin(race)]
 
         # Filter by second language spoken at home if provided
         if second_language_spoken_at_home:
-            filtered_data = filtered_data[filtered_data['second_language_spoken_at_home'].isin(second_language_spoken_at_home)]
+            filtered_data = filtered_data[filtered_data['Demographics: Is there another language other than English that is regularly spoken in your home?'].isin(second_language_spoken_at_home)]
 
         # Filter by adult live with if provided
         if adult_live_with:
-            filtered_data = filtered_data[filtered_data['adult_live_with'].isin(adult_live_with)]
+            filtered_data = filtered_data[filtered_data['Demographics: What best describes the adult guardian that you primarily live with?'].isin(adult_live_with)]
 
         # Filter by job format if provided
         if job_format:
-            filtered_data = filtered_data[filtered_data['job_format'].isin(job_format)]
+            filtered_data = filtered_data[filtered_data['Summer Job Experience: What category best describes what you did this summer?'].isin(job_format)]
 
         # Filter by program if provided
         if program:
-            filtered_data = filtered_data[filtered_data['program'].isin(program)]
+            filtered_data = filtered_data[filtered_data['Program'].isin(program)]
 
         # Filter by hours worked per week if provided
         if hours_worked_per_week:
-            filtered_data = filtered_data[filtered_data['hours_worked_per_week'].isin(hours_worked_per_week)]
+            filtered_data = filtered_data[filtered_data['Summer Job Experience: On average, how many hours did you work each week this summer?'].isin(hours_worked_per_week)]
 
         # Filter by daily work type if provided
         if daily_work_type:
-            filtered_data = filtered_data[filtered_data['daily_work_type'].isin(daily_work_type)]
+            filtered_data = filtered_data[filtered_data['Summer Job Experience: What type of daily work did you do this summer?'].isin(daily_work_type)]
 
         # Return the filtered data
         return filtered_data
 
 
-    def create_plot(self, plot_type, width=600, height=400, x_axis=None, y_axis=None, data=None, countplot_color='#1f77b4',
+    def create_plot(self, plot_type, width=650, height=400, x_axis=None, y_axis=None, data=None, countplot_color='#1f77b4',
                     stacked_bar_plot_palette='Set1', heatmap_cmap='Blues', edgecolor='None'):
         '''
         Create and return a plot (countplot, stacked bar plot, or heatmap) based on plot_type and
