@@ -1,7 +1,7 @@
-bokeh
+bokeh==2.4.0
 matplotlib
 numpy
 pandas
-panel
+panel==0.15.0
 seaborn
 tabulate
