@@ -373,4 +373,4 @@ layout = pn.template.FastListTemplate(
 # Initially hide the dashboard
 dashboard.visible = False
 
-layout.show()
+layout.servable()
