@@ -75,12 +75,12 @@ class SYEP_API:
         return sorted(unique_job_formats)
 
 
-    def get_unique_programs(self):
+    def get_unique_sector_categories(self):
         '''
-        Get and return list of unique programs from dataset
+        Get and return list of unique job sector categories from dataset
         '''
-        unique_programs = self.syep['Program'].dropna().astype(str).unique()
-        return sorted(unique_programs)
+        unique_sector_categories = self.syep['Job Sector Category'].dropna().astype(str).unique()
+        return sorted(unique_sector_categories)
 
 
     def get_unique_hours_worked(self):
@@ -100,10 +100,10 @@ class SYEP_API:
 
 
     def filter_data(self, gender=None, race=None, second_language_spoken_at_home=None, adult_live_with=None,
-                    job_format=None, program=None, hours_worked_per_week=None, daily_work_type=None):
+                    job_format=None, sector=None, hours_worked_per_week=None, daily_work_type=None):
         '''
         Filter data by demographics (gender, race, second_language_spoken_at_home, adult_live_with) and program attributes
-        (job_format, program, hours_worked_per_week, daily_work_type) and return filtered dataset
+        (job_format, sector, hours_worked_per_week, daily_work_type) and return filtered dataset
         '''
         # Start with the complete dataset
         filtered_data = self.syep
@@ -119,8 +119,8 @@ class SYEP_API:
             adult_live_with = [adult_live_with]
         if job_format and not isinstance(job_format, list):
             job_format = [job_format]
-        if program and not isinstance(program, list):
-            program = [program]
+        if sector and not isinstance(sector, list):
+            sector = [sector]
         if hours_worked_per_week and not isinstance(hours_worked_per_week, list):
             hours_worked_per_week = [hours_worked_per_week]
         if daily_work_type and not isinstance(daily_work_type, list):
@@ -146,9 +146,9 @@ class SYEP_API:
         if job_format:
             filtered_data = filtered_data[filtered_data['Summer Job Experience: What category best describes what you did this summer?'].isin(job_format)]
 
-        # Filter by program if provided
-        if program:
-            filtered_data = filtered_data[filtered_data['Program'].isin(program)]
+        # Filter by sector if provided
+        if sector:
+            filtered_data = filtered_data[filtered_data['Job Sector Category'].isin(sector)]
 
         # Filter by hours worked per week if provided
         if hours_worked_per_week:
@@ -242,8 +242,8 @@ def main():
     print('Unique adults live with: ', unique_adult_live_with, '\n')
     unique_job_formats = syep_api.get_unique_job_formats()
     print('Unique job formats: ', unique_job_formats, '\n')
-    unique_programs = syep_api.get_unique_programs()
-    print('Unique programs: ', unique_programs, '\n')
+    unique_sectors = syep_api.get_unique_sector_categories()
+    print('Unique job sector categories: ', unique_sectors, '\n')
     unique_hours_worked = syep_api.get_unique_hours_worked()
     print('Unique hours worked per week: ', unique_hours_worked, '\n')
     unique_daily_work = syep_api.get_unique_daily_work()

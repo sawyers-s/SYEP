@@ -48,8 +48,8 @@ adult_live_with_selection = pn.widgets.MultiSelect(name = 'Adult(s) living with:
                                                      value = [], margin = (5, 0, 10, 20))
 job_format_selection = pn.widgets.CheckBoxGroup(name = 'Job format(s): ', options = api.get_unique_job_formats(), value = [],
                                          inline = False, margin = (5, 0, 10, 30))
-program_selection = pn.widgets.CheckBoxGroup(name = 'Program(s): ', options = api.get_unique_programs(), value = [],
-                                         inline = False, margin = (5, 0, 10, 30))
+sector_selection = pn.widgets.CheckBoxGroup(name = 'Job sector category(ies): ', options = api.get_unique_sector_categories(),
+                                            value = [], inline = False, margin = (5, 0, 10, 30))
 hours_worked_per_week_selection = pn.widgets.CheckBoxGroup(name = 'Hours worked per week: ', options = api.get_unique_hours_worked(),
                                                          value = [], inline = False, margin = (5, 0, 10, 30))
 daily_work_type_selection = pn.widgets.MultiSelect(name = 'Daily work type(s): ', options = api.get_unique_daily_work(),
@@ -87,14 +87,14 @@ include_all_data_checkbox = pn.widgets.Checkbox(name = 'Include all data?', valu
 # CALLBACK FUNCTIONS
 
 def generate_table(x_axis_selection, y_axis_selection, gender_selection, race_selection, second_language_selection,
-                   adult_live_with_selection, job_format_selection, program_selection, hours_worked_per_week_selection,
+                   adult_live_with_selection, job_format_selection, sector_selection, hours_worked_per_week_selection,
                    daily_work_type_selection, include_all_data_checkbox):
     '''
     Generate and return datatable in 'Table' tab of dashboard based on selections
     '''
     # Filter data by year, genre, and vote conditions
     filtered_data = api.filter_data(gender_selection, race_selection, second_language_selection, adult_live_with_selection,
-                                    job_format_selection, program_selection, hours_worked_per_week_selection,
+                                    job_format_selection, sector_selection, hours_worked_per_week_selection,
                                     daily_work_type_selection)
 
     # If filtered data is empty (no data meets all conditions), return error message
@@ -120,7 +120,7 @@ def generate_table(x_axis_selection, y_axis_selection, gender_selection, race_se
 
     # Include all data if checkbox is checked
     if include_all_data_checkbox:
-        additional_columns = ['Program', 'Summer Job Experience: Did you work at the same location/employer last summer?', 'Summer Job Experience: What category best describes what you did this summer?', 'Summer Job Experience: On average, how many hours did you work each week this summer?', 'Summer Job Experience: What type of daily work did you do this summer?', 'Summer Job Experience: Overall, how well did the job match with your skills and interests?', 'Summer Job Experience: How likely are you to consider a career in the type of work you did this summer?', 'Summer Job Experience: If you had a job supervisor, how supportive were they overall?', 'Summer Job Experience: Did your supervisor - Properly train for your summer job?', 'Summer Job Experience: Did your supervisor - Help you understand your role at your summer job?', 'Summer Job Experience: Did your supervisor - Help you understand what was expected of you for your summer job?', 'Summer Job Experience: Did your supervisor - Give you feedback on how you were doing at your summer job?', 'Summer Job Experience: Did your supervisor - Help you think about how to achieve your educational or career goals?', 'Summer Job Experience: Did your supervisor - Make you feel comfortable talking about challenges outside of work?', 'Summer Job Experience: Overall, how would you rate your job experience this summer?', 'Summer Job Experience: Now that the summer is over - Do you have someone you can use as a job reference?', 'Summer Job Experience: Now that the summer is over - Do you have an adult you worked with that you consider a mentor?', 'Summer Job Experience: Now that the summer is over - Would you recommend this job to a friend?', 'Summer Job Experience: Now that the summer is over - Do you feel better prepared to enter a new job?', 'Summer Job Experience: Which of the following industries are you most interested in pursuing as a career?', 'Summer Job Experience: What do you plan to do after high school?', 'Job Search Skills: Indicate whether you have completed any of the following - I have prepared, edited, and proofread my resume.', 'Job Search Skills: Indicate whether you have completed any of the following - I have prepared, edited, and proofread my cover letter.', 'Job Search Skills: Indicate whether you have completed any of the following - I have asked an adult (e.g. family member, teacher, or neighbor) to serve as a reference for me when I apply for jobs.', 'Job Search Skills: Indicate whether you have completed any of the following - I have searched for jobs online using a job board (e.g. Monster, Indeed, Career Builder, Snagajob, Zip Recruiter)', 'Job Search Skills: Indicate whether you have completed any of the following  - I have talked with my family, neighbors, teachers, and friends, about the types of jobs I want -- and have asked for their help finding job opportunities.', 'Job Search Skills: Indicate whether you have completed any of the following  - I have developed some answer to the usual questions asked during an interview (e.g. what are your strength and weaknesses?)', 'Job Search Skills: Indicate whether you have completed any of the following - I have practiced my interviewing skills with an adult (e.g. family member, teacher, or neighbor).', 'Work Habits: Indicate how much you agree with each of the following phrases - I am usually on time for school or work.', 'Work Habits: Indicate how much you agree with each of the following phrases - I am rarely absent from school or call in sick.', 'Work Habits: Indicate how much you agree with each of the following phrases - I usually meet my deadlines and hand in assignments on time.', 'Work Habits: Indicate how much you agree with each of the following phrases - I often keep track of my assignments and rarely forget to hand things in.', 'Work Habits: Indicate how much you agree with each of the following phrases - I usually work independently without a lot of supervision.', 'Work Habits: Indicate how much you agree with each of the following phrases - I often ask for help if directions are not clear.', 'Work Habits: Indicate how much you agree with each of the following phrases - I often work in teams with other people.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get upset or lose my temper with other people.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get upset when supervisors or teachers correct my mistakes.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get into arguments with my friends.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get into arguments with my parents or teachers.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely have difficulty resolving arguments with people.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I often make eye contact when having a conversation.', 'Job Search Skills: What skills do you feel that you need to develop and improve to meet your future career goals?', 'Job Search Skills: Which of the following best describe how you typically manage your money?', 'Job Search Skills: Do you have any items that you regularly help pay for in your household?', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Parent', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Brother or sister', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Other family member (grandparent, aunt/uncle)', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Teacher', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Coach', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Clergy (Minister/Priest, Imam, Rabbi)', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Job Supervisor', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - Family', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups?  Friends', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - Co-workers', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - People in your neighborhood', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - People in your school', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - People in your place of worship', 'Well-being: Over the last two weeks, how often have you been bothered by the following problems? - Feeling nervous, anxious, or on edge', 'Well-being: Over the last two weeks, how often have you been bothered by the following problems? - Not being able to stop or control worrying', 'Well-being: Over the last two weeks, how often have you been bothered by the following problems? - Feeling down, depressed or hopeless', 'Well-being: Over the last two weeks, how often have you been bothered by the following problems? - Little interest or pleasure in doing things', 'Demographics: Gender', 'Demographics: Race', 'Demographics: Is there another language other than English that is regularly spoken in your home?', 'Demographics: What best describes the adult guardian that you primarily live with?']
+        additional_columns = ['Job Sector Category', 'Summer Job Experience: Did you work at the same location/employer last summer?', 'Summer Job Experience: What category best describes what you did this summer?', 'Summer Job Experience: On average, how many hours did you work each week this summer?', 'Summer Job Experience: What type of daily work did you do this summer?', 'Summer Job Experience: Overall, how well did the job match with your skills and interests?', 'Summer Job Experience: How likely are you to consider a career in the type of work you did this summer?', 'Summer Job Experience: If you had a job supervisor, how supportive were they overall?', 'Summer Job Experience: Did your supervisor - Properly train for your summer job?', 'Summer Job Experience: Did your supervisor - Help you understand your role at your summer job?', 'Summer Job Experience: Did your supervisor - Help you understand what was expected of you for your summer job?', 'Summer Job Experience: Did your supervisor - Give you feedback on how you were doing at your summer job?', 'Summer Job Experience: Did your supervisor - Help you think about how to achieve your educational or career goals?', 'Summer Job Experience: Did your supervisor - Make you feel comfortable talking about challenges outside of work?', 'Summer Job Experience: Overall, how would you rate your job experience this summer?', 'Summer Job Experience: Now that the summer is over - Do you have someone you can use as a job reference?', 'Summer Job Experience: Now that the summer is over - Do you have an adult you worked with that you consider a mentor?', 'Summer Job Experience: Now that the summer is over - Would you recommend this job to a friend?', 'Summer Job Experience: Now that the summer is over - Do you feel better prepared to enter a new job?', 'Summer Job Experience: Which of the following industries are you most interested in pursuing as a career?', 'Summer Job Experience: What do you plan to do after high school?', 'Job Search Skills: Indicate whether you have completed any of the following - I have prepared, edited, and proofread my resume.', 'Job Search Skills: Indicate whether you have completed any of the following - I have prepared, edited, and proofread my cover letter.', 'Job Search Skills: Indicate whether you have completed any of the following - I have asked an adult (e.g. family member, teacher, or neighbor) to serve as a reference for me when I apply for jobs.', 'Job Search Skills: Indicate whether you have completed any of the following - I have searched for jobs online using a job board (e.g. Monster, Indeed, Career Builder, Snagajob, Zip Recruiter)', 'Job Search Skills: Indicate whether you have completed any of the following  - I have talked with my family, neighbors, teachers, and friends, about the types of jobs I want -- and have asked for their help finding job opportunities.', 'Job Search Skills: Indicate whether you have completed any of the following  - I have developed some answer to the usual questions asked during an interview (e.g. what are your strength and weaknesses?)', 'Job Search Skills: Indicate whether you have completed any of the following - I have practiced my interviewing skills with an adult (e.g. family member, teacher, or neighbor).', 'Work Habits: Indicate how much you agree with each of the following phrases - I am usually on time for school or work.', 'Work Habits: Indicate how much you agree with each of the following phrases - I am rarely absent from school or call in sick.', 'Work Habits: Indicate how much you agree with each of the following phrases - I usually meet my deadlines and hand in assignments on time.', 'Work Habits: Indicate how much you agree with each of the following phrases - I often keep track of my assignments and rarely forget to hand things in.', 'Work Habits: Indicate how much you agree with each of the following phrases - I usually work independently without a lot of supervision.', 'Work Habits: Indicate how much you agree with each of the following phrases - I often ask for help if directions are not clear.', 'Work Habits: Indicate how much you agree with each of the following phrases - I often work in teams with other people.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get upset or lose my temper with other people.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get upset when supervisors or teachers correct my mistakes.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get into arguments with my friends.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely get into arguments with my parents or teachers.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I rarely have difficulty resolving arguments with people.', 'Communication Skills: Indicate how much you agree with each of the following phrases - I often make eye contact when having a conversation.', 'Job Search Skills: What skills do you feel that you need to develop and improve to meet your future career goals?', 'Job Search Skills: Which of the following best describe how you typically manage your money?', 'Job Search Skills: Do you have any items that you regularly help pay for in your household?', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Parent', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Brother or sister', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Other family member (grandparent, aunt/uncle)', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Teacher', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Coach', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Clergy (Minister/Priest, Imam, Rabbi)', 'Relationships: Over the past 30 days, how often did you feel that EACH of the following was a positive role model for you?  - Job Supervisor', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - Family', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups?  Friends', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - Co-workers', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - People in your neighborhood', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - People in your school', 'Relationships: Over the past 30 days, how often did you feel that you had a lot to contribute to EACH of the following groups? - People in your place of worship', 'Well-being: Over the last two weeks, how often have you been bothered by the following problems? - Feeling nervous, anxious, or on edge', 'Well-being: Over the last two weeks, how often have you been bothered by the following problems? - Not being able to stop or control worrying', 'Well-being: Over the last two weeks, how often have you been bothered by the following problems? - Feeling down, depressed or hopeless', 'Well-being: Over the last two weeks, how often have you been bothered by the following problems? - Little interest or pleasure in doing things', 'Demographics: Gender', 'Demographics: Race', 'Demographics: Is there another language other than English that is regularly spoken in your home?', 'Demographics: What best describes the adult guardian that you primarily live with?']
         for column in additional_columns:
             if column == x_axis_selection:
                 additional_columns.remove(column)
@@ -136,7 +136,7 @@ def generate_table(x_axis_selection, y_axis_selection, gender_selection, race_se
 
 
 def generate_plot(plot_type, x_axis_selection, y_axis_selection, gender_selection, race_selection, second_language_selection,
-                  adult_live_with_selection, job_format_selection, program_selection, hours_worked_per_week_selection,
+                  adult_live_with_selection, job_format_selection, sector_selection, hours_worked_per_week_selection,
                   daily_work_type_selection, width, height, countplot_color_picker, stacked_palette_selector,
                   heatmap_cmap_selector, border_checkbox, tilt_x_ticks, x_tick_font_size, show_all_x_ticks, tick_skip_slider):
     '''
@@ -150,11 +150,11 @@ def generate_plot(plot_type, x_axis_selection, y_axis_selection, gender_selectio
 
     # Ensure x_axis_selection is valid if appropriate. If not valid, set to default value to avoid error.
     if x_axis_selection is None:
-            x_axis_selection = 'program'
+            x_axis_selection = 'Job Sector Category'
 
-    # Filter data by job format, program, hours worked per week, and daily job type conditions
+    # Filter data by job format, sector category, hours worked per week, and daily job type conditions
     filtered_data = api.filter_data(gender_selection, race_selection, second_language_selection, adult_live_with_selection,
-                                    job_format_selection, program_selection, hours_worked_per_week_selection,
+                                    job_format_selection, sector_selection, hours_worked_per_week_selection,
                                     daily_work_type_selection)
 
     # If filtered data is empty (no data meets all conditions), return error message
@@ -200,12 +200,12 @@ def generate_plot(plot_type, x_axis_selection, y_axis_selection, gender_selectio
 
 # Bind datatable to widgets
 datatable = pn.bind(generate_table, x_axis_selection, y_axis_selection, gender_selection, race_selection,
-                    second_language_selection, adult_live_with_selection, job_format_selection, program_selection,
+                    second_language_selection, adult_live_with_selection, job_format_selection, sector_selection,
                     hours_worked_per_week_selection, daily_work_type_selection, include_all_data_checkbox)
 
 # Bind plot to widgets
 plot = pn.bind(generate_plot, plot_type, x_axis_selection, y_axis_selection, gender_selection, race_selection,
-               second_language_selection, adult_live_with_selection, job_format_selection, program_selection,
+               second_language_selection, adult_live_with_selection, job_format_selection, sector_selection,
                 hours_worked_per_week_selection, daily_work_type_selection, width, height, countplot_color_picker,
                 stacked_palette_selector, heatmap_cmap_selector, border_checkbox, tilt_x_ticks, x_tick_font_size,
                show_all_x_ticks, tick_skip_slider)
@@ -264,12 +264,16 @@ card_width = 400
 plot_type_header = pn.pane.Markdown("#### Plot type: ", margin = (-5, 0, -15, 10))
 gender_header = pn.pane.Markdown("Gender: ", margin = (-20, 0, -20, 10))
 job_format_header = pn.pane.Markdown("Job format: ", margin = (-20, 0, -20, 10))
-program_header = pn.pane.Markdown("Program: ", margin = (-20, 0, -20, 10))
+sector_header = pn.pane.Markdown("Job sector category: ", margin = (-20, 0, -20, 10))
 hours_worked_per_week_header = pn.pane.Markdown("Hours worked per week: ", margin = (-20, 0, -20, 10))
 search_type_header_demographics = pn.pane.Markdown("#### Demographics: ", margin = (-10, 0, -10, 10))
 search_type_header_program = pn.pane.Markdown("#### Program attributes: ", margin = (-10, 0, -10, 10))
 add_border_header = pn.pane.Markdown("#### For countplots and stacked bar plots ONLY: ", margin = (0, 0, -10, 10))
 show_all_x_ticks_header = pn.pane.Markdown("#### If NOT showing all x-axis ticks: ", margin = (-10, 0, -15, 10))
+multiselect_header1 = pn.pane.Markdown("##### To select multiple options, hold down the 'command' key on Mac or the 'control' key on Windows while making your selections.", margin = (-20, 45, 0, 15))
+multiselect_header2 = pn.pane.Markdown("##### To select multiple options, hold down the 'command' key on Mac or the 'control' key on Windows while making your selections.", margin = (-20, 45, 0, 15))
+multiselect_header3 = pn.pane.Markdown("##### To select multiple options, hold down the 'command' key on Mac or the 'control' key on Windows while making your selections.", margin = (-20, 45, 0, 15))
+multiselect_header4 = pn.pane.Markdown("##### To select multiple options, hold down the 'command' key on Mac or the 'control' key on Windows while making your selections.", margin = (-20, 45, 0, 15))
 
 # Create markdown for survey question guide
 survey_guide_df = pd.read_csv("survey_question_guide.csv")
@@ -287,19 +291,29 @@ search_card = pn.Card(
         gender_header,
         gender_selection,
         race_selection,
+        multiselect_header1,
         second_language_selection,
+        multiselect_header2,
         adult_live_with_selection,
+        multiselect_header3,
         search_type_header_program,
+        sector_header,
+        sector_selection,
+        daily_work_type_selection,
+        multiselect_header4,
         job_format_header,
         job_format_selection,
-        program_header,
-        program_selection,
         hours_worked_per_week_header,
         hours_worked_per_week_selection,
-        daily_work_type_selection,
     ),
     title = 'Search', width = card_width, collapsed = False
 )
+
+width.margin = (10, 0, 0, 20)
+height.margin = (10, 0, 0, 20)
+countplot_color_picker.margin = (10, 0, 0, 20)
+stacked_palette_selector.margin = (10, 0, 0, 20)
+heatmap_cmap_selector.margin = (10, 0, 0, 20)
 
 # Create 'Plot' card
 plot_card = pn.Card(
@@ -319,6 +333,8 @@ plot_card = pn.Card(
     ),
     title = 'Plot', width = card_width, collapsed = True
 )
+
+include_all_data_checkbox.margin = (10, 0, 20, 20)
 
 # Create 'Table' card
 table_card = pn.Card(
